@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_esse_info")
+@Table(name = "user_esse_infos")
 public class UserEsseInfo
 {
 	private int id;
@@ -30,6 +30,7 @@ public class UserEsseInfo
 		this.id = id;
 	}
 
+	@Column(name = "user_secu_info_id")
 	public int getUserSecuInfoId()
 	{
 		return userSecuInfoId;
@@ -83,4 +84,5 @@ public class UserEsseInfo
 	{
 		this.address = address;
 	}
+
 }

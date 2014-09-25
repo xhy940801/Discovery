@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "user_secu_info")
+@Table(name = "user_secu_infos")
 public class UserSecuInfo
 {
 	private int id;
@@ -55,7 +55,7 @@ public class UserSecuInfo
 		this.password = password;
 	}
 
-	@Column(name = "registration_time")
+	@Column(name = "registration_time", updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getRegistrationTime()
 	{
