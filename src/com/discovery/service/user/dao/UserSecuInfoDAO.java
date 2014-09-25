@@ -2,6 +2,10 @@ package com.discovery.service.user.dao;
 
 import com.discovery.service.user.model.UserSecuInfo;
 
+/**
+ * 用户安全信息的DAO接口
+ * @author xiao.hy
+ */
 public interface UserSecuInfoDAO
 {
 	/**

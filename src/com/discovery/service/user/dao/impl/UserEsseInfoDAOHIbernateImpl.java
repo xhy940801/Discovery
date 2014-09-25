@@ -12,7 +12,6 @@ import com.discovery.service.user.model.UserEsseInfo;
  */
 public class UserEsseInfoDAOHIbernateImpl implements UserEsseInfoDAO
 {
-	
 	private SessionFactory sessionFactory;
 
 	@Override
