@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="ssh/test">test it!</a>
+	<a href="ssh/test">test it!!</a>
 </body>
 </html>
