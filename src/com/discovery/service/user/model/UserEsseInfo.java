@@ -17,6 +17,14 @@ public class UserEsseInfo
 	private String tel;
 	private String phone;
 	private String address;
+	
+	public UserEsseInfo()
+	{
+		nickname = "";
+		tel = "";
+		phone = "";
+		address = "";
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

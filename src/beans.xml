@@ -12,8 +12,19 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<bean id="userEsseInfoDAO"
-		class="com.discovery.service.user.dao.impl.UserEsseInfoDAOHIbernateImpl">
+		class="com.discovery.service.user.dao.impl.UserEsseInfoDAOHibernateImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userSecuInfoDAO"
+		class="com.discovery.service.user.dao.impl.UserSecuInfoDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userManager"
+		class="com.discovery.service.user.manager.impl.UserManagerDefaultImpl">
+		<property name="userEsseInfoDAO" ref="userEsseInfoDAO"></property>
+		<property name="userSecuInfoDAO" ref="userSecuInfoDAO"></property>
 	</bean>
 
 </beans>

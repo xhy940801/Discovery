@@ -10,7 +10,7 @@ import com.discovery.service.user.model.UserEsseInfo;
  * @author xiao.hy
  * @see com.discovery.service.user.dao.UserEsseINfoDAO
  */
-public class UserEsseInfoDAOHIbernateImpl implements UserEsseInfoDAO
+public class UserEsseInfoDAOHibernateImpl implements UserEsseInfoDAO
 {
 	private SessionFactory sessionFactory;
 

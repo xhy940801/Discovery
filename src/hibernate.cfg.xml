@@ -16,13 +16,11 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 
-		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">validate</property>
-
 		<property name="connection.useUnicode">true</property>
 		<property name="connection.characterEncoding">UTF-8</property>
 
 		<mapping class="com.discovery.service.user.model.UserEsseInfo" />
+		<mapping class="com.discovery.service.user.model.UserSecuInfo" />
 
 	</session-factory>
 
