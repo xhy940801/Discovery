@@ -1,6 +1,7 @@
 package com.discovery.service.user.dao.impl;
 
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.discovery.service.user.dao.UserSecuInfoDAO;
 import com.discovery.service.user.model.UserSecuInfo;
@@ -15,12 +16,14 @@ public class UserSecuInfoDAOHibernateImpl implements UserSecuInfoDAO
 	private SessionFactory sessionFactory;
 
 	@Override
+	@Transactional
 	public void save(UserSecuInfo userSecuInfo)
 	{
 		sessionFactory.getCurrentSession().save(userSecuInfo);
 	}
 
 	@Override
+	@Transactional
 	public void update(UserSecuInfo userSecuInfo)
 	{
 		sessionFactory.getCurrentSession().update(userSecuInfo);

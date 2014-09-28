@@ -17,6 +17,14 @@ public class UserEsseInfo
 	private String tel;
 	private String phone;
 	private String address;
+	
+	public UserEsseInfo()
+	{
+		nickname = "";
+		tel = "";
+		phone = "";
+		address = "";
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +38,7 @@ public class UserEsseInfo
 		this.id = id;
 	}
 
-	@Column(name = "user_secu_info_id")
+	@Column(name = "user_secu_info_id", updatable = false)
 	public int getUserSecuInfoId()
 	{
 		return userSecuInfoId;
