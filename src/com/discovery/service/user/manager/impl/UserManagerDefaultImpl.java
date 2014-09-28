@@ -11,6 +11,7 @@ import com.discovery.service.user.manager.UserManager;
 import com.discovery.service.user.message.Message;
 import com.discovery.service.user.message.impl.ErrorMessage;
 import com.discovery.service.user.message.impl.GeneralMessage;
+import com.discovery.service.user.message.impl.UserEsseInfoMessage;
 import com.discovery.service.user.message.impl.UserSecuInfoMessage;
 import com.discovery.service.user.model.UserEsseInfo;
 import com.discovery.service.user.model.UserSecuInfo;
@@ -22,10 +23,10 @@ public class UserManagerDefaultImpl implements UserManager
 {
 	private UserEsseInfoDAO userEsseInfoDAO;
 	private UserSecuInfoDAO userSecuInfoDAO;
-	
+
 	private String verificationString;
 	private long timeLimit;
-	
+
 	public UserManagerDefaultImpl()
 	{
 		verificationString = "我写的。。。";
@@ -35,14 +36,14 @@ public class UserManagerDefaultImpl implements UserManager
 	@Override
 	public Message register(String email, String password)
 	{
-		if(!StringVerify.isEmail(email, 32))
+		if (!StringVerify.isEmail(email, 32))
 			return new ErrorMessage(201011, null);
-		if(!StringVerify.isStrongPassword(password, 6, 18))
+		if (!StringVerify.isStrongPassword(password, 6, 18))
 			return new ErrorMessage(201012, null);
-		if(userSecuInfoDAO.getByUsername(email) != null)
+		if (userSecuInfoDAO.getByUsername(email) != null)
 			return new ErrorMessage(601011, null);
 		password = MD5Util.md5(password);
-		if(password == null)
+		if (password == null)
 			return new ErrorMessage(501010, null);
 		UserSecuInfo userSecuInfo;
 		try
@@ -63,7 +64,7 @@ public class UserManagerDefaultImpl implements UserManager
 		}
 		return new UserSecuInfoMessage(0, userSecuInfo);
 	}
-	
+
 	@Transactional
 	public UserSecuInfo addUser(String email, String password)
 	{
@@ -86,7 +87,7 @@ public class UserManagerDefaultImpl implements UserManager
 		try
 		{
 			userSecuInfo = userSecuInfoDAO.getByUsername(email);
-			if(userSecuInfo == null)
+			if (userSecuInfo == null)
 				return new ErrorMessage(301022, null);
 			userSecuInfo.setLastLoginTime(new Date());
 			userSecuInfoDAO.update(userSecuInfo);
@@ -103,7 +104,7 @@ public class UserManagerDefaultImpl implements UserManager
 		{
 			return new ErrorMessage(701020, null);
 		}
-		if(!userSecuInfo.getPassword().equals(MD5Util.md5(password)))
+		if (!userSecuInfo.getPassword().equals(MD5Util.md5(password)))
 			return new ErrorMessage(301021, null);
 		return new UserSecuInfoMessage(0, userSecuInfo);
 	}
@@ -114,7 +115,8 @@ public class UserManagerDefaultImpl implements UserManager
 		String key;
 		try
 		{
-			key = AESUtil.encrypt(email + ";" + new Date().getTime() + ";" + verificationString);
+			key = AESUtil.encrypt(email + ";" + new Date().getTime() + ";"
+					+ verificationString);
 		}
 		catch (Exception e)
 		{
@@ -124,7 +126,7 @@ public class UserManagerDefaultImpl implements UserManager
 		{
 			return new ErrorMessage(701030, null);
 		}
-		if(key == null)
+		if (key == null)
 			return new ErrorMessage(501030, null);
 		return new GeneralMessage(0, key);
 	}
@@ -137,17 +139,17 @@ public class UserManagerDefaultImpl implements UserManager
 		try
 		{
 			context = AESUtil.decrypt(key);
-			if(!StringVerify.isStrongPassword(password, 6, 18))
+			if (!StringVerify.isStrongPassword(password, 6, 18))
 				return new ErrorMessage(201042, null);
-			if(context == null)
+			if (context == null)
 				return new ErrorMessage(501040, "context");
 			String[] datas = context.split(";", 3);
-			if(datas.length < 3 || !datas[2].equals(verificationString))
+			if (datas.length < 3 || !datas[2].equals(verificationString))
 				return new ErrorMessage(301041, null);
-			if(new Date().getTime() - Long.parseLong(datas[1]) > timeLimit)
+			if (new Date().getTime() - Long.parseLong(datas[1]) > timeLimit)
 				return new ErrorMessage(301042, null);
 			password = MD5Util.md5(password);
-			if(password == null)
+			if (password == null)
 				return new ErrorMessage(501040, "psd");
 			userSecuInfo = updateUserPassword(datas[0], password);
 		}
@@ -165,7 +167,7 @@ public class UserManagerDefaultImpl implements UserManager
 		}
 		return new UserSecuInfoMessage(0, userSecuInfo);
 	}
-	
+
 	@Transactional
 	private UserSecuInfo updateUserPassword(String email, String password)
 	{
@@ -179,17 +181,76 @@ public class UserManagerDefaultImpl implements UserManager
 	public Message changePassword(int userId, String oldPassword,
 			String newPassword)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		if (!StringVerify.isStrongPassword(newPassword, 6, 18))
+			return new ErrorMessage(201052, null);
+		UserSecuInfo userSecuInfo;
+		try
+		{
+			userSecuInfo = userSecuInfoDAO.getById(userId);
+			if (!userSecuInfo.getPassword().equals(MD5Util.md5(oldPassword)))
+				return new ErrorMessage(301051, null);
+			userSecuInfo.setPassword(MD5Util.md5(newPassword));
+			userSecuInfoDAO.update(userSecuInfo);
+		}
+		catch (HibernateException e)
+		{
+			return new ErrorMessage(401050, null);
+		}
+		catch (Exception e)
+		{
+			return new ErrorMessage(501050, null);
+		}
+		catch (Throwable e)
+		{
+			return new ErrorMessage(701050, null);
+		}
+		return new UserSecuInfoMessage(0, userSecuInfo);
 	}
 
 	@Override
 	public Message changeEsseInfo(int userId, String[] infos)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		UserEsseInfo userEsseInfo;
+		int code;
+		if ((code = verifyUserEsseInfo(infos)) != 0)
+			return new ErrorMessage(code, null);
+		try
+		{
+			userEsseInfo = userEsseInfoDAO.getByUserSecuInfoId(userId);
+			userEsseInfo.setNickname(infos[0]);
+			userEsseInfo.setTel(infos[1]);
+			userEsseInfo.setPhone(infos[2]);
+			userEsseInfo.setAddress(infos[3]);
+			userEsseInfoDAO.update(userEsseInfo);
+		}
+		catch (HibernateException e)
+		{
+			return new ErrorMessage(401060, null);
+		}
+		catch (Exception e)
+		{
+			return new ErrorMessage(501060, null);
+		}
+		catch (Throwable e)
+		{
+			return new ErrorMessage(701060, null);
+		}
+		return new UserEsseInfoMessage(0, userEsseInfo);
 	}
-	
+
+	private int verifyUserEsseInfo(String[] infos)
+	{
+		if (!StringVerify.checkLength(infos[0], 1, 16))
+			return 201061;
+		if (!StringVerify.checkLength(infos[1], 0, 16))
+			return 201062;
+		if (!StringVerify.checkLength(infos[2], 0, 16))
+			return 201063;
+		if (!StringVerify.checkLength(infos[3], 0, 255))
+			return 201064;
+		return 0;
+	}
+
 	public void setUserEsseInfoDAO(UserEsseInfoDAO userEsseInfoDAO)
 	{
 		this.userEsseInfoDAO = userEsseInfoDAO;

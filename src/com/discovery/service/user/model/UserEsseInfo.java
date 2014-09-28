@@ -38,7 +38,7 @@ public class UserEsseInfo
 		this.id = id;
 	}
 
-	@Column(name = "user_secu_info_id")
+	@Column(name = "user_secu_info_id", updatable = false)
 	public int getUserSecuInfoId()
 	{
 		return userSecuInfoId;
