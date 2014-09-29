@@ -23,14 +23,14 @@ public interface UserSecuInfoDAO
 	/**
 	 * 通过id获取用户安全信息
 	 * @param id 用户安全信息的id
-	 * @return 用户安全信息
+	 * @return UserSecuInfo 用户安全信息
 	 */
 	public UserSecuInfo getById(int id);
 	
 	/**
 	 * 通过用户名获取用户安全信息
 	 * @param username 用户名
-	 * @return 用户安全信息
+	 * @return UserSecuInfo 用户安全信息
 	 */
 	public UserSecuInfo getByUsername(String username);
 }

@@ -21,6 +21,7 @@
 
 		<mapping class="com.discovery.service.user.model.UserEsseInfo" />
 		<mapping class="com.discovery.service.user.model.UserSecuInfo" />
+		<mapping class="com.discovery.service.relation.model.RelationOfFriend" />
 
 	</session-factory>
 
