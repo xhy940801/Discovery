@@ -1,6 +1,6 @@
-package com.discovery.service.user.message.impl;
+package com.discovery.service.message.impl;
 
-import com.discovery.service.user.message.Message;
+import com.discovery.service.message.Message;
 import com.discovery.service.user.model.UserSecuInfo;
 
 public class UserSecuInfoMessage implements Message

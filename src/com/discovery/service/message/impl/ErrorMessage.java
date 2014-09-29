@@ -1,13 +1,13 @@
-package com.discovery.service.user.message.impl;
+package com.discovery.service.message.impl;
 
-import com.discovery.service.user.message.Message;
+import com.discovery.service.message.Message;
 
-public class GeneralMessage implements Message
+public class ErrorMessage implements Message
 {
 	private int msgCode;
 	private Object msg;
 	
-	public GeneralMessage(int msgCode, Object msg)
+	public ErrorMessage(int msgCode, Object msg)
 	{
 		this.msgCode = msgCode;
 		this.msg = msg;
