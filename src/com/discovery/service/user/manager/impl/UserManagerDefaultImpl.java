@@ -5,20 +5,25 @@ import java.util.Date;
 import org.hibernate.HibernateException;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.discovery.service.message.Message;
+import com.discovery.service.message.impl.ErrorMessage;
+import com.discovery.service.message.impl.GeneralMessage;
+import com.discovery.service.message.impl.UserEsseInfoMessage;
+import com.discovery.service.message.impl.UserSecuInfoMessage;
 import com.discovery.service.user.dao.UserEsseInfoDAO;
 import com.discovery.service.user.dao.UserSecuInfoDAO;
 import com.discovery.service.user.manager.UserManager;
-import com.discovery.service.user.message.Message;
-import com.discovery.service.user.message.impl.ErrorMessage;
-import com.discovery.service.user.message.impl.GeneralMessage;
-import com.discovery.service.user.message.impl.UserEsseInfoMessage;
-import com.discovery.service.user.message.impl.UserSecuInfoMessage;
 import com.discovery.service.user.model.UserEsseInfo;
 import com.discovery.service.user.model.UserSecuInfo;
 import com.discovery.service.util.AESUtil;
 import com.discovery.service.util.MD5Util;
 import com.discovery.service.util.StringVerify;
 
+/**
+ * 用户管理器的实现类
+ * @author xiao.hy
+ * @see com.discovery.service.user.manager.UserManager
+ */
 public class UserManagerDefaultImpl implements UserManager
 {
 	private UserEsseInfoDAO userEsseInfoDAO;

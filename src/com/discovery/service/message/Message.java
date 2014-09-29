@@ -1,4 +1,4 @@
-package com.discovery.service.user.message;
+package com.discovery.service.message;
 
 /**
  * 消息类
