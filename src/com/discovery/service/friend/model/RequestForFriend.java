@@ -1,4 +1,6 @@
-package com.discovery.service.relation.model;
+package com.discovery.service.friend.model;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,14 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "relation_of_friends")
-public class RelationOfFriend {
-	
+@Table(name = "request_for_friends")
+public class RequestForFriend {
+
 	private long id;
 	private int sponsorId;
 	private int receiverId;
+	private Date requestTime;
 	
-	public RelationOfFriend(){}
+	public RequestForFriend(){}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,5 +46,14 @@ public class RelationOfFriend {
 
 	public void setReceiverId(int receiverId) {
 		this.receiverId = receiverId;
+	}
+
+	@Column(name = "request_time")
+	public Date getRequestTime() {
+		return requestTime;
+	}
+
+	public void setRequestTime(Date requestTime) {
+		this.requestTime = requestTime;
 	}
 }

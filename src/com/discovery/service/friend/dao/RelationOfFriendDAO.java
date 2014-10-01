@@ -1,8 +1,8 @@
-package com.discovery.service.relation.dao;
+package com.discovery.service.friend.dao;
 
 import java.util.List;
 
-import com.discovery.service.relation.model.RelationOfFriend;
+import com.discovery.service.friend.model.RelationOfFriend;
 
 
 /*
@@ -35,5 +35,5 @@ public interface RelationOfFriendDAO {
 	 * 通过用户id获取该用户所有好友id
 	 * @param id 用户安全信息id
 	 */
-	public List<Integer> getFriendsIdArray(int id);
+	public List<RelationOfFriend> getFriendsList(int id);
 }
