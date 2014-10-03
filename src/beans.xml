@@ -21,6 +21,16 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="relationOfFriendDAO"
+		class="com.discovery.service.friend.dao.impl.RelationOfFriendDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="requestForFriendDAO"
+		class="com.discovery.service.friend.dao.impl.RequestForFriendDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<bean id="userManager"
 		class="com.discovery.service.user.manager.impl.UserManagerDefaultImpl">
 		<property name="userEsseInfoDAO" ref="userEsseInfoDAO"></property>
