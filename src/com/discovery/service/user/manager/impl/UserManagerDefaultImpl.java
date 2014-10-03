@@ -41,18 +41,21 @@ public class UserManagerDefaultImpl implements UserManager
 	@Override
 	public Message register(String email, String password)
 	{
+		//验证用户名或者密码是否符合规范
 		if (!StringVerify.isEmail(email, 32))
 			return new ErrorMessage(201011, null);
 		if (!StringVerify.isStrongPassword(password, 6, 18))
 			return new ErrorMessage(201012, null);
 		if (userSecuInfoDAO.getByUsername(email) != null)
 			return new ErrorMessage(601011, null);
+		//对密码进行md5
 		password = MD5Util.md5(password);
 		if (password == null)
 			return new ErrorMessage(501010, null);
 		UserSecuInfo userSecuInfo;
 		try
 		{
+			//调用成员函数addUser(这样设计的原因是,加了@Transactional注解的函数如果抛出运行时异常就会自动回滚
 			userSecuInfo = addUser(email, password);
 		}
 		catch (HibernateException e)
@@ -91,9 +94,11 @@ public class UserManagerDefaultImpl implements UserManager
 		UserSecuInfo userSecuInfo;
 		try
 		{
+			//获取用户信息
 			userSecuInfo = userSecuInfoDAO.getByUsername(email);
 			if (userSecuInfo == null)
 				return new ErrorMessage(301022, null);
+			//更新时间(这里不单独用函数是因为这里的操作只有一次更新/添加,不一定需要事务)
 			userSecuInfo.setLastLoginTime(new Date());
 			userSecuInfoDAO.update(userSecuInfo);
 		}
@@ -109,6 +114,7 @@ public class UserManagerDefaultImpl implements UserManager
 		{
 			return new ErrorMessage(701020, null);
 		}
+		//密码错误就返回错误信息
 		if (!userSecuInfo.getPassword().equals(MD5Util.md5(password)))
 			return new ErrorMessage(301021, null);
 		return new UserSecuInfoMessage(0, userSecuInfo);
@@ -120,6 +126,7 @@ public class UserManagerDefaultImpl implements UserManager
 		String key;
 		try
 		{
+			//对email,时间和一段特定的信息进行加密
 			key = AESUtil.encrypt(email + ";" + new Date().getTime() + ";"
 					+ verificationString);
 		}
@@ -143,19 +150,25 @@ public class UserManagerDefaultImpl implements UserManager
 		UserSecuInfo userSecuInfo;
 		try
 		{
+			//解密
 			context = AESUtil.decrypt(key);
+			//对密码进行格式验证
 			if (!StringVerify.isStrongPassword(password, 6, 18))
 				return new ErrorMessage(201042, null);
 			if (context == null)
 				return new ErrorMessage(501040, "context");
+			//以;为分割符,把解密的信息分成3个字符串
 			String[] datas = context.split(";", 3);
+			//看看是否是3个部分,并且查看特定的信息是否正确
 			if (datas.length < 3 || !datas[2].equals(verificationString))
 				return new ErrorMessage(301041, null);
+			//查看是否超时
 			if (new Date().getTime() - Long.parseLong(datas[1]) > timeLimit)
 				return new ErrorMessage(301042, null);
 			password = MD5Util.md5(password);
 			if (password == null)
 				return new ErrorMessage(501040, "psd");
+			//更新信息
 			userSecuInfo = updateUserPassword(datas[0], password);
 		}
 		catch (HibernateException e)
@@ -186,12 +199,14 @@ public class UserManagerDefaultImpl implements UserManager
 	public Message changePassword(int userId, String oldPassword,
 			String newPassword)
 	{
+		//检查密码强度
 		if (!StringVerify.isStrongPassword(newPassword, 6, 18))
 			return new ErrorMessage(201052, null);
 		UserSecuInfo userSecuInfo;
 		try
 		{
 			userSecuInfo = userSecuInfoDAO.getById(userId);
+			//查看旧密码是否相等
 			if (!userSecuInfo.getPassword().equals(MD5Util.md5(oldPassword)))
 				return new ErrorMessage(301051, null);
 			userSecuInfo.setPassword(MD5Util.md5(newPassword));
@@ -217,10 +232,12 @@ public class UserManagerDefaultImpl implements UserManager
 	{
 		UserEsseInfo userEsseInfo;
 		int code;
+		//检查用户信息是否合法,这个成员函数会返回错误码,如果没有错误,返回0
 		if ((code = verifyUserEsseInfo(infos)) != 0)
 			return new ErrorMessage(code, null);
 		try
 		{
+			//设置信息,更新
 			userEsseInfo = userEsseInfoDAO.getByUserSecuInfoId(userId);
 			userEsseInfo.setNickname(infos[0]);
 			userEsseInfo.setTel(infos[1]);
