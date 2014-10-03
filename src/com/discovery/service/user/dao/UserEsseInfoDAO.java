@@ -23,14 +23,14 @@ public interface UserEsseInfoDAO
 	/**
 	 * 通过id获取用户基本信息
 	 * @param id 用户基本信息记录的id
-	 * @return 用户基本信息
+	 * @return UserEsseInfo 用户基本信息
 	 */
 	public UserEsseInfo getById(int id);
 	
 	/**
 	 * 通过用户安全信息的id获取用户基本信息
 	 * @param id 用户安全信息的id
-	 * @return 用户基本信息
+	 * @return UserEsseInfo 用户基本信息
 	 */
 	public UserEsseInfo getByUserSecuInfoId(int id);
 }
