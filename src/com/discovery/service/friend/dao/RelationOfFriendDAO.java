@@ -26,13 +26,13 @@ public interface RelationOfFriendDAO {
 	public void delete(int sponsorId,int receiverId);
 	
 	/*
-	 * 检测好友关系是否存在
-	 * @param sponsorId,receiverId 两名用户的id
+	 * 获取一条好友关系记录
+	 * @param sponsorId,receiverId 两名用户id
 	 */
-	public boolean checkout(int sponsorId,int receiverId);
+	public RelationOfFriend getById(int sponsorId,int receiverId);
 	
 	/*
-	 * 通过用户id获取该用户所有好友id
+	 * 通过用户id获取该用户所有好友关系记录
 	 * @param id 用户安全信息id
 	 */
 	public List<RelationOfFriend> getFriendsList(int id);

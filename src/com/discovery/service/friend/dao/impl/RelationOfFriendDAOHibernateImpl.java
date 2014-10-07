@@ -35,20 +35,15 @@ public class RelationOfFriendDAOHibernateImpl implements RelationOfFriendDAO {
 			.setInteger(0,sponsorId).setInteger(1,receiverId).executeUpdate();
 
 	}
-
+	
 	@Override
-	public boolean checkout(int sponsorId, int receiverId) {
+	public RelationOfFriend getById(int sponsorId, int receiverId) {
 		// TODO Auto-generated method stub
-		Query query = sessionFactory.getCurrentSession()
-			.createQuery("from RelationOfFriend as r where r.sponsorId=? and r.receiverId=?");
-		query.setInteger(0,sponsorId).setInteger(1,receiverId);
-		if(query.list().size() > 0){
-			return true;
-		}else{
-			return false;
-		}
+		return (RelationOfFriend)sessionFactory.getCurrentSession()
+				.createQuery("from RelationOfFriend as r where r.sponsorId=? and r.receiverId=?")
+				.setInteger(0, sponsorId).setInteger(1, receiverId).uniqueResult();
 	}
-
+	
 	@Override
 	public List<RelationOfFriend> getFriendsList(int id) {
 		// TODO Auto-generated method stub

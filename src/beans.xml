@@ -31,10 +31,23 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="chatRecordDAO"
+		class="com.discovery.service.friend.dao.impl.ChatRecordDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<bean id="userManager"
 		class="com.discovery.service.user.manager.impl.UserManagerDefaultImpl">
 		<property name="userEsseInfoDAO" ref="userEsseInfoDAO"></property>
 		<property name="userSecuInfoDAO" ref="userSecuInfoDAO"></property>
 	</bean>
+	
+	<bean id="friendManager"
+		class="com.discovery.service.friend.manager.impl.FriendManagerDefaultImpl">
+		<property name="relationOfFriendDAO" ref="relationOfFriendDAO"></property>
+		<property name="requestForFriendDAO" ref="requestForFriendDAO"></property>
+		<property name="chatRecordDAO" ref="chatRecordDAO"></property>
+	</bean>
+	
 
 </beans>

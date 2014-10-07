@@ -19,6 +19,13 @@ public interface RequestForFriendDAO {
 	public void save(RequestForFriend requestForFriend);
 	
 	/*
+	 * 更新一条好友申请记录
+	 * @param sponsorId 发出申请的用户id
+	 * @param receiverId 被申请好友的用户id
+	 */
+	public void update(RequestForFriend requestForFriend);
+	
+	/*
 	 * 删除一条好友申请记录
 	 * @param sponsorId 发出申请的用户id
 	 * @param receiverId 被申请好友的用户id
@@ -26,10 +33,10 @@ public interface RequestForFriendDAO {
 	public void delete(int sponsorId,int receiverId);
 	
 	/*
-	 * 检测好友申请记录是否存在
+	 * 通过两名用户id获取好友申请记录
 	 * @param sponsorId,receiverId 两名用户的id
 	 */
-	public boolean checkout(int sponsorId,int receiverId);
+	public RequestForFriend getById(int sponsorId,int receiverId);
 	
 	/*
 	 * 通过用户id获取该用户发出的所有好友申请的对象用户的id

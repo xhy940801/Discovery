@@ -23,6 +23,7 @@
 		<mapping class="com.discovery.service.user.model.UserSecuInfo" />
 		<mapping class="com.discovery.service.friend.model.RelationOfFriend" />
 		<mapping class="com.discovery.service.friend.model.RequestForFriend" />
+		<mapping class="com.discovery.service.friend.model.ChatRecord" />
 
 	</session-factory>
 

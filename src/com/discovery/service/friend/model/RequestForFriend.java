@@ -8,25 +8,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "request_for_friends")
 public class RequestForFriend {
 
-	private long id;
+	private int id;
 	private int sponsorId;
 	private int receiverId;
 	private Date requestTime;
+	private Date handleTime;
+	private byte status;
 	
 	public RequestForFriend(){}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -49,6 +53,7 @@ public class RequestForFriend {
 	}
 
 	@Column(name = "request_time")
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getRequestTime() {
 		return requestTime;
 	}
@@ -56,4 +61,24 @@ public class RequestForFriend {
 	public void setRequestTime(Date requestTime) {
 		this.requestTime = requestTime;
 	}
+	
+	@Column(name = "handle_time")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getHandleTime() {
+		return handleTime;
+	}
+
+	public void setHandleTime(Date handleTime) {
+		this.handleTime = handleTime;
+	}
+	
+	@Column(name = "status")
+	public byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(byte status) {
+		this.status = status;
+	}
+	
 }

@@ -23,26 +23,19 @@ public class RequestForFriendDAOHibernateImpl implements RequestForFriendDAO{
 		sessionFactory.getCurrentSession().save(requestForFriend);
 		
 	}
+	
+	@Override
+	public void update(RequestForFriend requestForFriend) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(requestForFriend);
+	}
 
 	@Override
 	public void delete(int sponsorId, int receiverId) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession()
-			.createQuery("delete RequestForFriend as r where r.sponsorId=? and r.receiverId=?")
-			.setInteger(0,sponsorId).setInteger(1,receiverId).executeUpdate();
-	}
-
-	@Override
-	public boolean checkout(int sponsorId, int receiverId) {
-		// TODO Auto-generated method stub
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from RequestForFriend as r where r.sponsorId=? and r.receiverId=?");
-		query.setInteger(0,sponsorId).setInteger(1,receiverId);
-		if(query.list().size() > 0){
-			return true;
-		}else{
-			return false;
-		}
+		.createQuery("delete RequestForFriend as r where r.sponsorId=? and r.receiverId=?")
+		.setInteger(0, sponsorId).setInteger(1, receiverId).executeUpdate();
 	}
 
 	@Override
@@ -64,5 +57,14 @@ public class RequestForFriendDAOHibernateImpl implements RequestForFriendDAO{
 			List<RequestForFriend> re = query.list();
 			return re;
 	}
+
+	@Override
+	public RequestForFriend getById(int sponsorId, int receiverId) {
+		// TODO Auto-generated method stub
+		return (RequestForFriend) sessionFactory.getCurrentSession()
+				.createQuery("from RequestForFriend as r where r.sponsorId=? and r.receiverId=?")
+				.setInteger(0, sponsorId).setInteger(1,receiverId).uniqueResult();
+	}
+
 
 }

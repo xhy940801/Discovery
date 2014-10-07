@@ -17,4 +17,5 @@ msgCode意义划分：
 第二，三位数的意义：
 	为00时，表示其他模块
 	为01时，表示用户模块，其他位参见（usermsgcode.txt）
+	为02时，表示好友模块，其他位参见（friendmsgcode.txt）
 	
