@@ -36,6 +36,26 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="pushDAO"
+		class="com.discovery.service.push.dao.impl.PushDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="pushRecordDAO"
+		class="com.discovery.service.push.dao.impl.PushRecordDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="pushUserRecordDAO"
+		class="com.discovery.service.push.dao.impl.PushUserRecordDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="pictureInfoDAO"
+		class="com.discovery.service.picture.dao.impl.PictureInfoDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<bean id="userManager"
 		class="com.discovery.service.user.manager.impl.UserManagerDefaultImpl">
 		<property name="userEsseInfoDAO" ref="userEsseInfoDAO"></property>
@@ -49,5 +69,17 @@
 		<property name="chatRecordDAO" ref="chatRecordDAO"></property>
 	</bean>
 	
+	<bean id="pushManager"
+		class="com.discovery.service.push.manager.impl.PushManagerDefaultImpl">
+		<property name="pushDAO" ref="pushDAO"></property>
+		<property name="pushRecordDAO" ref="pushRecordDAO"></property>
+		<property name="pushUserRecordDAO" ref="pushUserRecordDAO"></property>
+	</bean>
+	
+	<bean id="pictureManager"
+		class="com.discovery.service.picture.manager.impl.PictureManagerDefaultImpl">
+		<property name="pictureInfoDAO" ref="pictureInfoDAO"></property>
+		<property name="pushRecordDAO" ref="pushRecordDAO"></property>
+	</bean>
 
 </beans>

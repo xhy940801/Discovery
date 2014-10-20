@@ -24,6 +24,9 @@
 		<mapping class="com.discovery.service.friend.model.RelationOfFriend" />
 		<mapping class="com.discovery.service.friend.model.RequestForFriend" />
 		<mapping class="com.discovery.service.friend.model.ChatRecord" />
+		<mapping class="com.discovery.service.push.model.PushRecord" />
+		<mapping class="com.discovery.service.push.model.PushUserRecord" />
+		<mapping class="com.discovery.service.picture.model.PictureInfo" />
 
 	</session-factory>
 

@@ -13,6 +13,8 @@ public class UserEsseInfo
 {
 	private int id;
 	private int userSecuInfoId;
+	private float latitude;
+	private float longitude;
 	private String nickname;
 	private String tel;
 	private String phone;
@@ -47,6 +49,22 @@ public class UserEsseInfo
 	public void setUserSecuInfoId(int userSecuInfoId)
 	{
 		this.userSecuInfoId = userSecuInfoId;
+	}
+
+	public float getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
+
+	public float getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
 	}
 
 	@Column(length = 16)
