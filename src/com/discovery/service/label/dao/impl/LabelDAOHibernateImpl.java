@@ -1,5 +1,7 @@
 package com.discovery.service.label.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,18 +33,35 @@ public class LabelDAOHibernateImpl implements LabelDAO
 		return (Label) sessionFactory.getCurrentSession().get(Label.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
-	public Label getByLink(int link)
+	public List<Label> getByLink(int link)
+	{
+		return sessionFactory.getCurrentSession()
+				.createQuery("from Label as l where l.link=?")
+				.setInteger(0, link).list();
+	}
+
+	@Override
+	public Label getByName(String name)
 	{
 		return (Label) sessionFactory.getCurrentSession()
-				.createQuery("from Label as l where l.link=?")
-				.setInteger(0, link).uniqueResult();
+				.createQuery("from Label as l where l.name=?")
+				.setString(0, name).uniqueResult();
+	}
+	
+	@Override
+	public List<Integer> getLinks(int offset, int length)
+	{
+		@SuppressWarnings("unchecked")
+		List<Integer> l = sessionFactory.getCurrentSession()
+				.createQuery("select l.link from Label as l").list();
+		return l;
 	}
 
 	public void setSessionFactory(SessionFactory sessionFactory)
 	{
 		this.sessionFactory = sessionFactory;
 	}
-
 }

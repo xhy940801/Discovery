@@ -36,5 +36,10 @@
 		<property name="userEsseInfoDAO" ref="userEsseInfoDAO"></property>
 		<property name="userSecuInfoDAO" ref="userSecuInfoDAO"></property>
 	</bean>
+	
+	<bean id="labelDAO"
+		class="com.discovery.service.label.dao.impl.LabelDAOHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 
 </beans>
