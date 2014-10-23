@@ -18,4 +18,4 @@ msgCode意义划分：
 	为00时，表示其他模块
 	为01时，表示用户模块，其他位参见（usermsgcode.txt）
 	为02时，表示好友模块，其他位参见（friendmsgcode.txt）
-	
+	为05时，表示文件模块，其他位参见（filemsgcode.txt)

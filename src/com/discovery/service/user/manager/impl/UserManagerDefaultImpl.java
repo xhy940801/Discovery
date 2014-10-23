@@ -272,6 +272,31 @@ public class UserManagerDefaultImpl implements UserManager
 			return 201064;
 		return 0;
 	}
+	
+	@Override
+	public Message getEsseInfo(int userId)
+	{
+		UserEsseInfo userEsseInfo;
+		try
+		{
+			userEsseInfo = userEsseInfoDAO.getByUserSecuInfoId(userId);
+			if(userEsseInfo == null)
+				return new ErrorMessage(201070, null);
+		}
+		catch (HibernateException e)
+		{
+			return new ErrorMessage(401070, null);
+		}
+		catch (Exception e)
+		{
+			return new ErrorMessage(501070, null);
+		}
+		catch (Throwable e)
+		{
+			return new ErrorMessage(701070, null);
+		}
+		return new UserEsseInfoMessage(0, userEsseInfo);
+	}
 
 	public void setUserEsseInfoDAO(UserEsseInfoDAO userEsseInfoDAO)
 	{

@@ -55,4 +55,11 @@ public interface UserManager
 	 * @return 消息类
 	 */
 	public Message changeEsseInfo(int userId, String[] infos);
+	
+	/**
+	 * 获取用户基本信息
+	 * @param userId 用户的id
+	 * @return 消息类
+	 */
+	public Message getEsseInfo(int userId);
 }

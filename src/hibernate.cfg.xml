@@ -27,6 +27,8 @@
 		<mapping class="com.discovery.service.push.model.PushRecord" />
 		<mapping class="com.discovery.service.push.model.PushUserRecord" />
 		<mapping class="com.discovery.service.picture.model.PictureInfo" />
+		<mapping class="com.discovery.service.label.model.Label" />
+		<mapping class="com.discovery.service.file.model.File" />
 
 	</session-factory>
 
