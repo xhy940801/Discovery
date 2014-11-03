@@ -25,6 +25,7 @@ public class ChatRecordDAOHibernateImpl implements ChatRecordDAO{
 	}
 
 	@Override
+	@Transactional
 	public List<ChatRecord> getChatRecord(int senderId, int receiverId,int count) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()

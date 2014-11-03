@@ -37,6 +37,7 @@ public class RelationOfFriendDAOHibernateImpl implements RelationOfFriendDAO {
 	}
 	
 	@Override
+	@Transactional
 	public RelationOfFriend getById(int sponsorId, int receiverId) {
 		// TODO Auto-generated method stub
 		return (RelationOfFriend)sessionFactory.getCurrentSession()
@@ -45,6 +46,7 @@ public class RelationOfFriendDAOHibernateImpl implements RelationOfFriendDAO {
 	}
 	
 	@Override
+	@Transactional
 	public List<RelationOfFriend> getFriendsList(int id) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()

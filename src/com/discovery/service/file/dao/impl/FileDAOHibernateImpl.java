@@ -18,6 +18,7 @@ public class FileDAOHibernateImpl implements FileDAO
 	}
 
 	@Override
+	@Transactional
 	public File getById(int id)
 	{
 		return (File) sessionFactory.getCurrentSession().get(File.class, id);

@@ -18,6 +18,7 @@
 
 		<property name="connection.useUnicode">true</property>
 		<property name="connection.characterEncoding">UTF-8</property>
+		
 
 		<mapping class="com.discovery.service.user.model.UserEsseInfo" />
 		<mapping class="com.discovery.service.user.model.UserSecuInfo" />

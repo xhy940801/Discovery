@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.discovery.service.friend.dao.RequestForFriendDAO;
 import com.discovery.service.friend.model.RelationOfFriend;
@@ -18,6 +19,7 @@ public class RequestForFriendDAOHibernateImpl implements RequestForFriendDAO{
 	}
 	
 	@Override
+	@Transactional
 	public void save(RequestForFriend requestForFriend) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(requestForFriend);
@@ -25,12 +27,14 @@ public class RequestForFriendDAOHibernateImpl implements RequestForFriendDAO{
 	}
 	
 	@Override
+	@Transactional
 	public void update(RequestForFriend requestForFriend) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(requestForFriend);
 	}
 
 	@Override
+	@Transactional
 	public void delete(int sponsorId, int receiverId) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession()
@@ -39,6 +43,7 @@ public class RequestForFriendDAOHibernateImpl implements RequestForFriendDAO{
 	}
 
 	@Override
+	@Transactional
 	public List<RequestForFriend> getToRequset(int id) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()
@@ -49,6 +54,7 @@ public class RequestForFriendDAOHibernateImpl implements RequestForFriendDAO{
 	}
 
 	@Override
+	@Transactional
 	public List<RequestForFriend> getFromRequest(int id) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()
@@ -59,6 +65,7 @@ public class RequestForFriendDAOHibernateImpl implements RequestForFriendDAO{
 	}
 
 	@Override
+	@Transactional
 	public RequestForFriend getById(int sponsorId, int receiverId) {
 		// TODO Auto-generated method stub
 		return (RequestForFriend) sessionFactory.getCurrentSession()

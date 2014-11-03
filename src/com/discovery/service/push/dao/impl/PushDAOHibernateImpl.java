@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.discovery.service.picture.model.PictureInfo;
 import com.discovery.service.push.dao.PushDAO;
@@ -25,6 +26,7 @@ public class PushDAOHibernateImpl implements PushDAO {
 	}
 
 	@Override
+	@Transactional
 	public int refresh(int pictureId) {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession()
@@ -33,6 +35,7 @@ public class PushDAOHibernateImpl implements PushDAO {
 	}
 
 	@Override
+	@Transactional
 	public List<Integer> getPushList(PictureInfo pictureInfo,int count) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()
@@ -47,6 +50,7 @@ public class PushDAOHibernateImpl implements PushDAO {
 	}
 
 	@Override
+	@Transactional
 	public void push(int pictureId, List<Integer> userIdList) {
 		// TODO Auto-generated method stub
 		PushRecord pushRecord = (PushRecord)sessionFactory.getCurrentSession()

@@ -1,5 +1,7 @@
 package com.discovery.service.user.dao.impl;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +32,7 @@ public class UserSecuInfoDAOHibernateImpl implements UserSecuInfoDAO
 	}
 
 	@Override
+	@Transactional
 	public UserSecuInfo getById(int id)
 	{
 		return (UserSecuInfo) sessionFactory.getCurrentSession().
@@ -37,11 +40,15 @@ public class UserSecuInfoDAOHibernateImpl implements UserSecuInfoDAO
 	}
 
 	@Override
+	@Transactional
 	public UserSecuInfo getByUsername(String username)
 	{
-		return (UserSecuInfo) sessionFactory.getCurrentSession()
-				.createQuery("from UserSecuInfo as u where u.email=?")
-				.setString(0, username).uniqueResult();
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from UserSecuInfo as u where u.email=?");
+		query.setString(0, username);
+		UserSecuInfo reInfo = (UserSecuInfo) query.uniqueResult();
+				
+		return reInfo;
 	}
 	
 	public void setSessionFactory(SessionFactory sessionFactory)

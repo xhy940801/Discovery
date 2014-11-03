@@ -30,6 +30,7 @@ public class UserEsseInfoDAOHibernateImpl implements UserEsseInfoDAO
 	}
 
 	@Override
+	@Transactional
 	public UserEsseInfo getById(int id)
 	{
 		return (UserEsseInfo) sessionFactory.getCurrentSession().
@@ -37,6 +38,7 @@ public class UserEsseInfoDAOHibernateImpl implements UserEsseInfoDAO
 	}
 
 	@Override
+	@Transactional
 	public UserEsseInfo getByUserSecuInfoId(int id)
 	{
 		return (UserEsseInfo) sessionFactory.getCurrentSession()

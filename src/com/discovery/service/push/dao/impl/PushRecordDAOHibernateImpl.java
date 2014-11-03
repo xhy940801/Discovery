@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.discovery.service.push.dao.PushRecordDAO;
 import com.discovery.service.push.model.PushRecord;
@@ -22,18 +23,21 @@ public class PushRecordDAOHibernateImpl implements PushRecordDAO {
 	}
 
 	@Override
+	@Transactional
 	public void save(PushRecord pushRecord) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(pushRecord);
 	}
 
 	@Override
+	@Transactional
 	public void update(PushRecord pushRecord) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(pushRecord);
 	}
 
 	@Override
+	@Transactional
 	public void delete(int pictureId) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession()
@@ -42,6 +46,7 @@ public class PushRecordDAOHibernateImpl implements PushRecordDAO {
 	}
 
 	@Override
+	@Transactional
 	public PushRecord getByPictureId(int pictureId) {
 		// TODO Auto-generated method stub
 		return (PushRecord)sessionFactory.getCurrentSession()

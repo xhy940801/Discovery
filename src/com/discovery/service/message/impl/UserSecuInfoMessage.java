@@ -17,11 +17,11 @@ public class UserSecuInfoMessage implements Message
 	@Override
 	public String toJSONMessage()
 	{
-		String msg = "{id:" + userSecuInfo.getId() + ",email:\""
-				+ userSecuInfo.getEmail() + "\",lastLoginTime:\""
-				+ userSecuInfo.getLastLoginTime() + "\",registionTime:\""
+		String msg = "{\"id\":\"" + userSecuInfo.getId() + "\",\"email\":\""
+				+ userSecuInfo.getEmail() + "\",\"lastLoginTime\":\""
+				+ userSecuInfo.getLastLoginTime() + "\",\"registionTime\":\""
 				+ userSecuInfo.getRegistrationTime() + "\"}";
-		return "{code:" + msgCode + ",msg:" + msg + "}";
+		return "{\"code\":\"" + msgCode + "\",\"msg\":" + msg + "}";
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.discovery.service.push.dao.PushUserRecordDAO;
 import com.discovery.service.push.model.PushUserRecord;
@@ -17,18 +18,21 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 	}
 
 	@Override
+	@Transactional
 	public void save(PushUserRecord pushUserRecord) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(pushUserRecord);
 	}
 
 	@Override
+	@Transactional
 	public void update(PushUserRecord pushUserRecord) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(pushUserRecord);
 	}
 
 	@Override
+	@Transactional
 	public void deleteByPictureId(int pictureId) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession()
@@ -37,6 +41,7 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 	}
 
 	@Override
+	@Transactional
 	public void deleteByUserId(int userId) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession()
@@ -45,6 +50,7 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 	}
 
 	@Override
+	@Transactional
 	public PushUserRecord getById(int pictureId, int userId) {
 		// TODO Auto-generated method stub
 		return (PushUserRecord)sessionFactory.getCurrentSession()
@@ -53,6 +59,7 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 	}
 
 	@Override
+	@Transactional
 	public List<PushUserRecord> getListByPictureId(int pictureId) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()
@@ -63,6 +70,7 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 	}
 
 	@Override
+	@Transactional
 	public List<PushUserRecord> getListByUserId(int userId) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()

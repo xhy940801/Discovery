@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.discovery.service.picture.dao.PictureInfoDAO;
 import com.discovery.service.picture.model.PictureInfo;
@@ -22,24 +23,28 @@ public class PictureInfoDAOHibernateImpl implements PictureInfoDAO {
 	}
 
 	@Override
+	@Transactional
 	public void save(PictureInfo pictureInfo) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(pictureInfo);
 	}
 
 	@Override
+	@Transactional
 	public void update(PictureInfo pictureInfo) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(pictureInfo);
 	}
 
 	@Override
+	@Transactional
 	public PictureInfo getById(int id) {
 		// TODO Auto-generated method stub
 		return (PictureInfo)sessionFactory.getCurrentSession().get(PictureInfo.class, id);
 	}
 
 	@Override
+	@Transactional
 	public List<PictureInfo> getByUserId(int userId) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()
@@ -50,6 +55,7 @@ public class PictureInfoDAOHibernateImpl implements PictureInfoDAO {
 	}
 
 	@Override
+	@Transactional
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession()

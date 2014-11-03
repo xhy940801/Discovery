@@ -1,6 +1,7 @@
 package com.discovery.service.push.manager.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,12 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.discovery.service.message.Message;
 import com.discovery.service.message.impl.ErrorMessage;
 import com.discovery.service.message.impl.GeneralMessage;
+import com.discovery.service.message.impl.PictureListMessage;
 import com.discovery.service.picture.model.PictureInfo;
 import com.discovery.service.push.dao.PushDAO;
 import com.discovery.service.push.dao.PushRecordDAO;
 import com.discovery.service.push.dao.PushUserRecordDAO;
 import com.discovery.service.push.manager.PushManager;
 import com.discovery.service.push.model.PushRecord;
+import com.discovery.service.push.model.PushUserRecord;
 
 public class PushManagerDefaultImpl implements PushManager {
 
@@ -74,9 +77,10 @@ public class PushManagerDefaultImpl implements PushManager {
 	@Override
 	public Message getPushPictures(int userId) {
 		// TODO Auto-generated method stub
+		List<PushUserRecord> list;
 		try {
 			
-			pushUserRecordDAO.getListByUserId(userId);
+			list = pushUserRecordDAO.getListByUserId(userId);
 			
 		}catch(HibernateException e){
 			return new ErrorMessage(0, null);
@@ -85,7 +89,7 @@ public class PushManagerDefaultImpl implements PushManager {
 		}catch(Throwable e){
 			return new ErrorMessage(0, null);
 		}
-		return new GeneralMessage(0,null);
+		return new PictureListMessage(0, list);
 	}
 
 	@Override

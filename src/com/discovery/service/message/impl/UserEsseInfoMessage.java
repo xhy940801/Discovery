@@ -17,12 +17,12 @@ public class UserEsseInfoMessage implements Message
 	@Override
 	public String toJSONMessage()
 	{
-		String msg = "{userSecuInfoId:" + userEsseInfo.getUserSecuInfoId() + ",nickname:\""
-				+ userEsseInfo.getNickname() + "\",tel:\""
-				+ userEsseInfo.getTel() + "\",phone:\""
-				+ userEsseInfo.getPhone() + "\",address:\""
+		String msg = "{\"userSecuInfoId\":" + userEsseInfo.getUserSecuInfoId() + ",\"nickname\":\""
+				+ userEsseInfo.getNickname() + "\",\"tel\":\""
+				+ userEsseInfo.getTel() + "\",\"phone\":\""
+				+ userEsseInfo.getPhone() + "\",\"address\":\""
 				+ userEsseInfo.getAddress() + "\"}";
-		return "{code:" + msgCode + ",msg:" + msg + "}";
+		return "{\"code\":" + msgCode + ",\"msg\":" + msg + "}";
 	}
 
 	@Override
