@@ -53,6 +53,7 @@ public class FileManagerDefaultImpl implements FileManager
 		}
 		catch (HibernateException e)
 		{
+			e.printStackTrace();
 			return new ErrorMessage(405020, null);
 		}
 		catch (Exception e)
@@ -86,6 +87,11 @@ public class FileManagerDefaultImpl implements FileManager
 			return new ErrorMessage(705020, null);
 		}
 		return new GeneralMessage(0, null);
+	}
+	
+	public void setFileDAO(FileDAO fileDAO)
+	{
+		this.fileDAO = fileDAO;
 	}
 
 }
