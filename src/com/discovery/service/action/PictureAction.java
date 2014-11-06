@@ -21,7 +21,7 @@ public class PictureAction extends ActionSupport {
 		Map<?, ?> map = ActionContext.getContext().getParameters();
 		int userId = Integer.parseInt(((String[]) map.get("userId"))[0]);
 		Message msg = pushManager.getPushPictures(userId);
-		ActionContext.getContext().put("pushPictList", msg.toJSONMessage());
+		ActionContext.getContext().put("msg", msg.toJSONMessage());
 		return "success";
 	}
 	

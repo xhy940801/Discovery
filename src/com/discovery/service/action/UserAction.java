@@ -23,7 +23,7 @@ public class UserAction extends ActionSupport {
 		String username = ((String[]) map.get("email"))[0];
 		String password = ((String[]) map.get("password"))[0];
 		Message msg = userManager.login(username, password);
-		ActionContext.getContext().put("UserSecuInfo", msg.toJSONMessage());
+		ActionContext.getContext().put("msg", msg.toJSONMessage());
 		
 		return "success";
 	}
@@ -32,7 +32,7 @@ public class UserAction extends ActionSupport {
 		Map<?, ?> map = ActionContext.getContext().getParameters();
 		int userId = Integer.parseInt(((String[]) map.get("userId"))[0]);
 		Message msg = userManager.getEsseInfo(userId);
-		ActionContext.getContext().put("UserEsseInfo", msg.toJSONMessage());
+		ActionContext.getContext().put("msg", msg.toJSONMessage());
 		return "success";
 	}
 

@@ -8,10 +8,10 @@
 
 	<package name="user" namespace="/user" extends="struts-default">
 		<action name="login" class="userAction" method="login">
-			<result name="success">/WEB-INF/JSP/userSecuInfo.jsp</result>
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
 		<action name="getEsseInfo" class="userAction" method="getEsseInfo">
-			<result name="success">/WEB-INF/JSP/userEsseInfo.jsp</result>
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
 	</package>
 
@@ -22,7 +22,7 @@
 	</package>
 	<package name="picture" namespace="/picture" extends="struts-default">
 		<action name="pushPictList" class="pictureAction" method="pushPictList">
-			<result name="success">/WEB-INF/JSP/pushPictList.jsp</result>
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
 	</package>
 </struts>
