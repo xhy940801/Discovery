@@ -5,7 +5,8 @@
 <struts>
 	<include file="struts-default.xml"/>
 	<constant name="struts.objectFactory" value="spring" />
-	<package name="discovery" namespace="/users" extends="struts-default">
+
+	<package name="user" namespace="/user" extends="struts-default">
 		<action name="login" class="userAction" method="login">
 			<result name="success">/WEB-INF/JSP/userSecuInfo.jsp</result>
 		</action>
@@ -13,9 +14,15 @@
 			<result name="success">/WEB-INF/JSP/userEsseInfo.jsp</result>
 		</action>
 	</package>
+
 	<package name="files" namespace="/files" extends="struts-default">
 		<action name="getBase64" class="fileAction" method="getBase64">
 			<result name="success">/WEB-INF/JSP/success.jsp</result>
+		</action>
+	</package>
+	<package name="picture" namespace="/picture" extends="struts-default">
+		<action name="pushPictList" class="pictureAction" method="pushPictList">
+			<result name="success">/WEB-INF/JSP/pushPictList.jsp</result>
 		</action>
 	</package>
 </struts>

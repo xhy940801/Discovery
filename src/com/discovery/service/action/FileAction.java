@@ -1,4 +1,4 @@
-package com.discovery.service.action.file;
+package com.discovery.service.action;
 
 import java.util.Map;
 
