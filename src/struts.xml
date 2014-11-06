@@ -5,12 +5,17 @@
 <struts>
 	<include file="struts-default.xml"/>
 	<constant name="struts.objectFactory" value="spring" />
-	<package name="discovery" namespace="/" extends="struts-default">
+	<package name="user" namespace="/user" extends="struts-default">
 		<action name="login" class="userAction" method="login">
 			<result name="success">/WEB-INF/JSP/userSecuInfo.jsp</result>
 		</action>
 		<action name="getEsseInfo" class="userAction" method="getEsseInfo">
 			<result name="success">/WEB-INF/JSP/userEsseInfo.jsp</result>
+		</action>
+	</package>
+	<package name="picture" namespace="/picture" extends="struts-default">
+		<action name="pushPictList" class="pictureAction" method="pushPictList">
+			<result name="success">/WEB-INF/JSP/pushPictList.jsp</result>
 		</action>
 	</package>
 </struts>

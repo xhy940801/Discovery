@@ -99,8 +99,12 @@
 	</bean>
  -->
  
- 	<bean id="userAction" class="com.discovery.action.user.UserAction" scope="prototype">
+ 	<bean id="userAction" class="com.discovery.action.UserAction" scope="prototype">
  		<property name="userManager" ref="userManager"></property>
+ 	</bean>
+ 
+ 	<bean id="pictureAction" class="com.discovery.action.PictureAction" scope="prototype">
+ 		<property name="pushManager" ref="pushManager"></property>
  	</bean>
  
 </beans>
