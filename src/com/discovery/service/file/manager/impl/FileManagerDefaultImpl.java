@@ -2,6 +2,8 @@ package com.discovery.service.file.manager.impl;
 
 import org.hibernate.HibernateException;
 
+import sun.misc.BASE64Decoder;
+
 import com.discovery.service.file.dao.FileDAO;
 import com.discovery.service.file.manager.FileManager;
 import com.discovery.service.file.model.File;
@@ -13,13 +15,21 @@ import com.discovery.service.message.impl.GeneralMessage;
 public class FileManagerDefaultImpl implements FileManager
 {
 	private FileDAO fileDAO;
+	private BASE64Decoder base64Decoder;
+	
+	public FileManagerDefaultImpl()
+	{
+		base64Decoder = new BASE64Decoder();
+	}
 
 	@Override
-	public Message addFile(String name, String type, byte[] data, String remark)
+	public Message addFile(String name, String type, String content, String remark)
 	{
 		File file = new File();
 		try
 		{
+			byte[] data =  base64Decoder.decodeBuffer(content);
+			
 			file.setName(name);
 			file.setType(type);
 			file.setContent(data);

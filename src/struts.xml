@@ -19,6 +19,9 @@
 		<action name="getBase64" class="fileAction" method="getBase64">
 			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
+		<action name="saveFile" class="fileAction" method="saveFile">
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
+		</action>
 	</package>
 	<package name="picture" namespace="/picture" extends="struts-default">
 		<action name="pushPictList" class="pictureAction" method="pushPictList">
