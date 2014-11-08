@@ -49,5 +49,5 @@ public interface PushUserRecordDAO {
 	 * 获取一个用户所有的推送图片记录
 	 * @param userId 用户id
 	 */
-	public List<PushUserRecord> getListByUserId(int userId);
+	public List<PushUserRecord> getListByUserId(int userId,int offset,int count);
 }

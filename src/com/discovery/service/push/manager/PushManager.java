@@ -25,7 +25,7 @@ public interface PushManager {
 	 * 获取所推送的图片id列表
 	 * @param userId 用户id
 	 */
-	public Message getPushPictures(int userId);
+	public Message getPushPictures(int userId,int offset,int count);
 	
 	/*
 	 * 删除图片的推送信息

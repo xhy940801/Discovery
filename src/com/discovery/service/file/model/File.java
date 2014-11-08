@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="file")
+@Table(name="files")
 public class File
 {
 	private int id;
