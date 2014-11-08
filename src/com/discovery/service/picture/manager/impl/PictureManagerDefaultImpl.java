@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.discovery.service.message.Message;
 import com.discovery.service.message.impl.ErrorMessage;
 import com.discovery.service.message.impl.GeneralMessage;
+import com.discovery.service.message.impl.PictureMessage;
 import com.discovery.service.picture.dao.PictureInfoDAO;
 import com.discovery.service.picture.manager.PictureManager;
 import com.discovery.service.picture.model.PictureInfo;
@@ -142,6 +143,30 @@ public class PictureManagerDefaultImpl implements PictureManager {
 			return new ErrorMessage(702040, null);
 		}
 		return new GeneralMessage(0, null);
+	}
+	
+	@Override
+	public Message getPicture(int pictureId) {
+		// TODO Auto-generated method stub
+		PictureInfo pictureInfo;
+		try {
+			
+			pictureInfo = pictureInfoDAO.getById(pictureId);
+			
+		}catch(HibernateException e){
+			return new ErrorMessage(402040, null);
+		}catch(Exception e){
+			return new ErrorMessage(502040, null);
+		}catch(Throwable e){
+			return new ErrorMessage(702040, null);
+		}
+		return new PictureMessage(0, pictureInfo);
+	}
+
+	@Override
+	public Message getPictureList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	@Transactional
@@ -412,7 +437,7 @@ public class PictureManagerDefaultImpl implements PictureManager {
 			pictureInfo.setTemperature9(count);
 			break;
 		}
-	}
+		}
 	}
 	
 	private void resetAllTemp(PictureInfo pictureInfo){
@@ -470,6 +495,6 @@ public class PictureManagerDefaultImpl implements PictureManager {
 			pictureInfo.setTemperature9(pictureInfo.getTemperature9() + count);
 			break;
 		}
-	}
+		}
 	}
 }

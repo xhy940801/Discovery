@@ -27,5 +27,8 @@
 		<action name="pushPictList" class="pictureAction" method="pushPictList">
 			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
+		<action name="getPictureInfo" class="pictureAction" method="getPictureInfo">
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -71,12 +71,14 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 
 	@Override
 	@Transactional
-	public List<PushUserRecord> getListByUserId(int userId) {
+	public List<PushUserRecord> getListByUserId(int userId,int offset,int count) {
 		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("from PushUserRecord as p where p.userId=? and p.status!=? order by p.pushTime DESC");
 		query.setInteger(0, userId);
 		query.setInteger(1, 2);
+		query.setFirstResult(offset);
+		query.setMaxResults(count);
 		List<PushUserRecord> re = query.list();
 		return re;
 	}

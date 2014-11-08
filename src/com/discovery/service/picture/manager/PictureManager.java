@@ -38,4 +38,8 @@ public interface PictureManager {
 	 * @param count 增加量
 	 */
 	public Message addTemperature(int pictureId,int count);
+	
+	public Message getPicture(int pictureId);
+	
+	public Message getPictureList();
 }

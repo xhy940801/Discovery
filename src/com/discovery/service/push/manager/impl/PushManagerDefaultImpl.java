@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.discovery.service.message.Message;
 import com.discovery.service.message.impl.ErrorMessage;
 import com.discovery.service.message.impl.GeneralMessage;
-import com.discovery.service.message.impl.PictureListMessage;
+import com.discovery.service.message.impl.PushListMessage;
 import com.discovery.service.picture.model.PictureInfo;
 import com.discovery.service.push.dao.PushDAO;
 import com.discovery.service.push.dao.PushRecordDAO;
@@ -75,12 +75,12 @@ public class PushManagerDefaultImpl implements PushManager {
 	}
 
 	@Override
-	public Message getPushPictures(int userId) {
+	public Message getPushPictures(int userId,int offset,int count) {
 		// TODO Auto-generated method stub
 		List<PushUserRecord> list;
 		try {
 			
-			list = pushUserRecordDAO.getListByUserId(userId);
+			list = pushUserRecordDAO.getListByUserId(userId,offset,count);
 			
 		}catch(HibernateException e){
 			return new ErrorMessage(0, null);
@@ -89,7 +89,7 @@ public class PushManagerDefaultImpl implements PushManager {
 		}catch(Throwable e){
 			return new ErrorMessage(0, null);
 		}
-		return new PictureListMessage(0, list);
+		return new PushListMessage(0, list);
 	}
 
 	@Override

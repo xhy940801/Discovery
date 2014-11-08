@@ -105,8 +105,9 @@
  		<property name="fileManager" ref="fileManager"></property>
  	</bean>
  
- 	<bean id="pictureAction" class="com.discovery.action.service.PictureAction" scope="prototype">
+ 	<bean id="pictureAction" class="com.discovery.service.action.PictureAction" scope="prototype">
  		<property name="pushManager" ref="pushManager"></property>
+ 		<property name="pictureManager" ref="pictureManager"></property>
  	</bean>
  
 </beans>
