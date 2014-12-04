@@ -28,7 +28,6 @@ public class PushDAOHibernateImpl implements PushDAO {
 	@Override
 	@Transactional
 	public int refresh(int pictureId) {
-		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession()
 				.createQuery("update PushUserRecord as p set p.status=? where p.pictureId=? and p.status=?")
 				.setInteger(0, 2).setInteger(1, pictureId).setInteger(2, 0).executeUpdate();
@@ -37,7 +36,6 @@ public class PushDAOHibernateImpl implements PushDAO {
 	@Override
 	@Transactional
 	public List<Integer> getPushList(PictureInfo pictureInfo,int count) {
-		// TODO Auto-generated method stub
 		Query query = sessionFactory.getCurrentSession()
 						.createQuery("select userSecuInfoId from UserEsseInfo as u where u.userSecuInfoId not in (select userId from PushUserRecord as p where p.pictureId=?1) order by ((u.latitude-?2)*(u.latitude-?2) + (u.longitude-?3)*(u.longitude-?3)) ASC ");
 		query.setInteger("1", pictureInfo.getId());
@@ -45,6 +43,7 @@ public class PushDAOHibernateImpl implements PushDAO {
 		query.setFloat("3", pictureInfo.getLongitude());
 		query.setFirstResult(0);
 		query.setMaxResults(count);
+		@SuppressWarnings("unchecked")
 		List<Integer> re = query.list();
 		return re;
 	}
@@ -52,7 +51,6 @@ public class PushDAOHibernateImpl implements PushDAO {
 	@Override
 	@Transactional
 	public void push(int pictureId, List<Integer> userIdList) {
-		// TODO Auto-generated method stub
 		PushRecord pushRecord = (PushRecord)sessionFactory.getCurrentSession()
 			.createQuery("from PushRecord as p where p.pictureId=?").setInteger(0, pictureId).uniqueResult();
 		PushUserRecord pushUserRecord;

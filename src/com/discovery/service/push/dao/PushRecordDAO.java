@@ -1,7 +1,5 @@
 package com.discovery.service.push.dao;
 
-import java.util.List;
-
 import com.discovery.service.push.model.PushRecord;
 
 /*

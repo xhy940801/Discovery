@@ -1,9 +1,6 @@
 package com.discovery.service.action;
 
-import java.io.IOException;
 import java.util.Map;
-
-import sun.misc.BASE64Decoder;
 
 import com.discovery.service.file.manager.FileManager;
 import com.discovery.service.message.Message;

@@ -19,6 +19,7 @@ public class UserEsseInfo
 	private String tel;
 	private String phone;
 	private String address;
+	private int revision;
 	
 	public UserEsseInfo()
 	{
@@ -109,6 +110,17 @@ public class UserEsseInfo
 	public void setAddress(String address)
 	{
 		this.address = address;
+	}
+
+	@Column
+	public int getRevision()
+	{
+		return revision;
+	}
+
+	public void setRevision(int revision)
+	{
+		this.revision = revision;
 	}
 
 }

@@ -65,6 +65,7 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 		Query query = sessionFactory.getCurrentSession()
 						.createQuery("from PushUserRecord as p where p.pictureId=?");
 		query.setInteger(0, pictureId);
+		@SuppressWarnings("unchecked")
 		List<PushUserRecord> re = query.list();
 		return re;
 	}
@@ -79,6 +80,7 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 		query.setInteger(1, 2);
 		query.setFirstResult(offset);
 		query.setMaxResults(count);
+		@SuppressWarnings("unchecked")
 		List<PushUserRecord> re = query.list();
 		return re;
 	}

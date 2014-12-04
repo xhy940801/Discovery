@@ -10,9 +10,8 @@ import com.discovery.service.message.Message;
 import com.discovery.service.picture.manager.PictureManager;
 import com.discovery.service.push.manager.PushManager;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class PictureAction extends ActionSupport {
+public class PictureAction {
 
 	PushManager pushManager;
 	PictureManager pictureManager;

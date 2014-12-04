@@ -1,8 +1,5 @@
 package com.discovery.service.push.dao.impl;
 
-import java.util.List;
-
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 

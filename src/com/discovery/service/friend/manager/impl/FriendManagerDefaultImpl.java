@@ -34,8 +34,6 @@ public class FriendManagerDefaultImpl implements FriendManager {
 	
 	@Override
 	public Message request(int sponsorId, int receiverId) {
-		// TODO Auto-generated method stub
-		RelationOfFriend relationOfFriend;
 		RequestForFriend requestForFriend;
 		try{
 			if(isFriend(sponsorId, receiverId)){
@@ -69,8 +67,6 @@ public class FriendManagerDefaultImpl implements FriendManager {
 
 	@Override
 	public Message agree(int sponsorId, int receiverId) {
-		// TODO Auto-generated method stub
-		RelationOfFriend relationOfFriend;
 		RequestForFriend requestForFriend;
 		try{
 			if(isFriend(sponsorId, receiverId)){
@@ -130,8 +126,6 @@ public class FriendManagerDefaultImpl implements FriendManager {
 	
 	@Override
 	public Message breakOff(int sponsorId, int receiverId) {
-		// TODO Auto-generated method stub
-		RelationOfFriend relationOfFriend;
 		try{
 			if(!isFriend(sponsorId, receiverId)){
 				return new ErrorMessage(302041, null);

@@ -7,12 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.discovery.service.message.Message;
-import com.discovery.service.push.manager.PushManager;
 import com.discovery.service.user.manager.UserManager;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class UserAction extends ActionSupport {
+public class UserAction {
 	
 	UserManager userManager;
 	
