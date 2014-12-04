@@ -1,0 +1,5 @@
+这是一个测试版
+需更新java和php的
+需要链接php端
+1.要在用户基本信息里加个字段reversion
+2.在php里加了个controller具体用法看注释
