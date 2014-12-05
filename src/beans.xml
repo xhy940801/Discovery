@@ -72,6 +72,7 @@
 	<bean id="pushManager"
 		class="com.discovery.service.push.manager.impl.PushManagerDefaultImpl">
 		<property name="pushDAO" ref="pushDAO"></property>
+		<property name="userEsseInfoDAO" ref="userEsseInfoDAO"></property>
 		<property name="pushRecordDAO" ref="pushRecordDAO"></property>
 		<property name="pushUserRecordDAO" ref="pushUserRecordDAO"></property>
 	</bean>

@@ -17,10 +17,13 @@ import com.discovery.service.push.dao.PushUserRecordDAO;
 import com.discovery.service.push.manager.PushManager;
 import com.discovery.service.push.model.PushRecord;
 import com.discovery.service.push.model.PushUserRecord;
+import com.discovery.service.user.dao.UserEsseInfoDAO;
+import com.discovery.service.user.model.UserEsseInfo;
 
 public class PushManagerDefaultImpl implements PushManager {
 
 	private PushDAO pushDAO;
+	private UserEsseInfoDAO userEsseInfoDAO;
 	private PushRecordDAO pushRecordDAO;
 	private PushUserRecordDAO pushUserRecordDAO;
 	
@@ -38,6 +41,10 @@ public class PushManagerDefaultImpl implements PushManager {
 
 	public void setPushUserRecordDAO(PushUserRecordDAO pushUserRecordDAO) {
 		this.pushUserRecordDAO = pushUserRecordDAO;
+	}
+	
+	public void setUserEsseInfoDAO(UserEsseInfoDAO userEsseInfoDAO) {
+		this.userEsseInfoDAO = userEsseInfoDAO;
 	}
 
 	@Override
@@ -133,10 +140,18 @@ public class PushManagerDefaultImpl implements PushManager {
 		push(pictureInfo, pushRecord);
 	}
 	
+	@Transactional
 	private void push(PictureInfo pictureInfo,PushRecord pushRecord){
-		pushDAO.push(pushRecord.getPictureId(), pushDAO.getPushList(pictureInfo, pushRecord.getRemainCount()));
+		List<Integer> userIdList = pushDAO.getPushList(pictureInfo, pushRecord.getRemainCount());
+		for(Integer id : userIdList)
+		{
+			UserEsseInfo ueInfo = userEsseInfoDAO.getByUserSecuInfoId(id);
+			ueInfo.setRevision(ueInfo.getRevision() + 1);
+			userEsseInfoDAO.update(ueInfo);
+		}
+		pushDAO.push(pushRecord.getPictureId(), userIdList);
 	}
-	
+
 	@Transactional
 	private void deletePush(int pictureId){
 		pushRecordDAO.delete(pictureId);
