@@ -2,6 +2,7 @@ package com.discovery.service.picture.manager.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -81,11 +82,11 @@ public class PictureManagerDefaultImpl implements PictureManager {
 			pictureInfoDAO.save(pictureInfo);
 			
 		}catch(HibernateException e){
-			return new ErrorMessage(402040, null);
+			return new ErrorMessage(403010, null);
 		}catch(Exception e){
-			return new ErrorMessage(502040, null);
+			return new ErrorMessage(503010, null);
 		}catch(Throwable e){
-			return new ErrorMessage(702040, null);
+			return new ErrorMessage(703010, null);
 		}
 		return new GeneralMessage(0, null);
 	}
@@ -96,11 +97,11 @@ public class PictureManagerDefaultImpl implements PictureManager {
 		try {
 			pictureInfoDAO.delete(pictureId);
 		}catch(HibernateException e){
-			return new ErrorMessage(402040, null);
+			return new ErrorMessage(403020, null);
 		}catch(Exception e){
-			return new ErrorMessage(502040, null);
+			return new ErrorMessage(503020, null);
 		}catch(Throwable e){
-			return new ErrorMessage(702040, null);
+			return new ErrorMessage(703020, null);
 		}
 		return new GeneralMessage(0, null);
 	}
@@ -117,11 +118,11 @@ public class PictureManagerDefaultImpl implements PictureManager {
 			likeUpdate(pictureInfo, pushRecord, count);
 			
 		}catch(HibernateException e){
-			return new ErrorMessage(402040, null);
+			return new ErrorMessage(403030, null);
 		}catch(Exception e){
-			return new ErrorMessage(502040, null);
+			return new ErrorMessage(503030, null);
 		}catch(Throwable e){
-			return new ErrorMessage(702040, null);
+			return new ErrorMessage(703030, null);
 		}
 		return new GeneralMessage(0, null);
 	}
@@ -136,11 +137,11 @@ public class PictureManagerDefaultImpl implements PictureManager {
 			temperatureUpdate(pictureInfo, count);
 			
 		}catch(HibernateException e){
-			return new ErrorMessage(402040, null);
+			return new ErrorMessage(403040, null);
 		}catch(Exception e){
-			return new ErrorMessage(502040, null);
+			return new ErrorMessage(503040, null);
 		}catch(Throwable e){
-			return new ErrorMessage(702040, null);
+			return new ErrorMessage(703040, null);
 		}
 		return new GeneralMessage(0, null);
 	}
@@ -148,25 +149,39 @@ public class PictureManagerDefaultImpl implements PictureManager {
 	@Override
 	public Message getPicture(int pictureId) {
 		// TODO Auto-generated method stub
-		PictureInfo pictureInfo;
+		List<PictureInfo> pictureInfos = new LinkedList<PictureInfo>();
 		try {
 			
-			pictureInfo = pictureInfoDAO.getById(pictureId);
+			pictureInfos.add(pictureInfoDAO.getById(pictureId));
 			
 		}catch(HibernateException e){
-			return new ErrorMessage(402040, null);
+			return new ErrorMessage(403050, null);
 		}catch(Exception e){
-			return new ErrorMessage(502040, null);
+			return new ErrorMessage(503050, null);
 		}catch(Throwable e){
-			return new ErrorMessage(702040, null);
+			return new ErrorMessage(703050, null);
 		}
-		return new PictureMessage(0, pictureInfo);
+		return new PictureMessage(0,pictureInfos);
 	}
 
 	@Override
-	public Message getPictureList() {
+	public Message getPictureList(List<Integer> list) {
 		// TODO Auto-generated method stub
-		return null;
+		List<PictureInfo> pictureInfos = new LinkedList<PictureInfo>();
+		try {
+			
+			for(Integer i:list){
+				pictureInfos.add(pictureInfoDAO.getById(i));
+			}
+			
+		}catch(HibernateException e){
+			return new ErrorMessage(403060, null);
+		}catch(Exception e){
+			return new ErrorMessage(503060, null);
+		}catch(Throwable e){
+			return new ErrorMessage(703060, null);
+		}
+		return new PictureMessage(0,pictureInfos);
 	}
 	
 	@Transactional

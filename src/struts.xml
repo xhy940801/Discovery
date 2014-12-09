@@ -30,5 +30,8 @@
 		<action name="getPictureInfo" class="pictureAction" method="getPictureInfo">
 			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
+		<action name="getPictureInfoList" class="pictureAction" method="getPictureInfoList">
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
+		</action>
 	</package>
 </struts>

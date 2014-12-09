@@ -20,7 +20,9 @@ public class UserEsseInfoMessage implements Message
 		String msg = "{\"userSecuInfoId\":" + userEsseInfo.getUserSecuInfoId() + ",\"nickname\":\""
 				+ userEsseInfo.getNickname() + "\",\"tel\":\""
 				+ userEsseInfo.getTel() + "\",\"phone\":\""
-				+ userEsseInfo.getPhone() + "\",\"revision\":\""
+				+ userEsseInfo.getPhone() + "\",\"latitude\":\""
+				+ userEsseInfo.getLatitude() + "\",\"longitude\":\""
+				+ userEsseInfo.getLongitude() + "\",\"revision\":\""
 				+ userEsseInfo.getRevision() + "\",\"address\":\""
 				+ userEsseInfo.getAddress() + "\"}";
 		return "{\"code\":" + msgCode + ",\"msg\":" + msg + "}";

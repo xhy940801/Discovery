@@ -1,5 +1,7 @@
 package com.discovery.service.picture.manager;
 
+import java.util.List;
+
 import com.discovery.service.message.Message;
 import com.discovery.service.picture.model.PictureInfo;
 
@@ -41,5 +43,5 @@ public interface PictureManager {
 	
 	public Message getPicture(int pictureId);
 	
-	public Message getPictureList();
+	public Message getPictureList(List<Integer> list);
 }
