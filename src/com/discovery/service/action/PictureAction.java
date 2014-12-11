@@ -12,8 +12,6 @@ import com.discovery.service.message.Message;
 import com.discovery.service.picture.manager.PictureManager;
 import com.discovery.service.push.manager.PushManager;
 import com.opensymphony.xwork2.ActionContext;
-import com.xiao.util.json.xjson.JArrayObj;
-import com.xiao.util.json.xjson.JSONDecodeException;
 
 public class PictureAction {
 
@@ -26,8 +24,8 @@ public class PictureAction {
 	{
 		int fileId = this.getIntegerParam("fileId");
 		int userId = this.getIntegerParam("userId");
-		float longitude = this.getDoubleParam("longitude");
-		float latitude = this.getDoubleParam("latitude");
+		float longitude = (float) this.getDoubleParam("longitude");
+		float latitude = (float) this.getDoubleParam("latitude");
 		String remark = this.getStringParam("remark");
 
 		Message msg = pictureManager.addPicture(fileId, userId, longitude, latitude, remark);
@@ -91,5 +89,27 @@ public class PictureAction {
 			}
 		}
 		return list;
+	}
+	
+	private String getParam(String key)
+	{
+		Map<?, ?> map = ActionContext.getContext().getParameters();
+		String[] data = (String[]) map.get(key);
+		return data[0];
+	}
+	
+	private int getIntegerParam(String key)
+	{
+		return Integer.parseInt(getParam(key));
+	}
+	
+	private double getDoubleParam(String key)
+	{
+		return Double.parseDouble(getParam(key));
+	}
+	
+	private String getStringParam(String key)
+	{
+		return getParam(key);
 	}
 }
