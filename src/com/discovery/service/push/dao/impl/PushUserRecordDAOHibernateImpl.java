@@ -78,10 +78,18 @@ public class PushUserRecordDAOHibernateImpl implements PushUserRecordDAO {
 				.createQuery("from PushUserRecord as p where p.userId=? and p.status!=? order by p.pushTime DESC");
 		query.setInteger(0, userId);
 		query.setInteger(1, 2);
-		query.setFirstResult(offset);
-		query.setMaxResults(count);
+		//query.setFirstResult(offset);
+		//query.setMaxResults(count);
 		@SuppressWarnings("unchecked")
 		List<PushUserRecord> re = query.list();
+		if(offset >= re.size()){
+			return null;
+		}
+		if(offset + count > re.size()){
+			re = re.subList(offset, re.size());
+		}else{
+			re = re.subList(offset, offset+count);
+		}
 		return re;
 	}
 
