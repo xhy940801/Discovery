@@ -17,7 +17,20 @@ public class PictureAction {
 	PictureManager pictureManager;
 	
 	HttpServletRequest request = ServletActionContext.getRequest();
-	
+
+	public String addPicture()
+	{
+		int fileId = this.getIntegerParam("fileId");
+		int userId = this.getIntegerParam("userId");
+		float longitude = this.getDoubleParam("longitude");
+		float latitude = this.getDoubleParam("latitude");
+		String remark = this.getStringParam("remark");
+
+		Message msg = pictureManager.addPicture(fileId, userId, longitude, latitude, remark);
+		ActionContext.getContext().put("msg", msg.toJSONMessage());
+		return "success";
+	}
+
 	public String pushPictList(){
 		Map<?, ?> map = ActionContext.getContext().getParameters();
 		int userId = Integer.parseInt(((String[]) map.get("userId"))[0]);
