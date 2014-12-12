@@ -88,7 +88,7 @@ public class PictureManagerDefaultImpl implements PictureManager {
 		}catch(Throwable e){
 			return new ErrorMessage(703010, null);
 		}
-		return new GeneralMessage(0, null);
+		return new GeneralMessage(0, pictureInfo.getId());
 	}
 
 	@Override
