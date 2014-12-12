@@ -24,6 +24,9 @@
 		</action>
 	</package>
 	<package name="picture" namespace="/picture" extends="struts-default">
+		<action name="addPicture" class="pictureAction" method="addPicture">
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
+		</action>
 		<action name="pushPictList" class="pictureAction" method="pushPictList">
 			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
