@@ -30,6 +30,16 @@ public class FileAction
 		ActionContext.getContext().put("msg", msg.toJSONMessage());
 		return "success";
 	}
+	
+	public String appendFile()
+	{
+		Map<?, ?> map = ActionContext.getContext().getParameters();
+		String content = ((String[])map.get("content"))[0];
+		int id = Integer.valueOf(((String[])map.get("type"))[0]);
+		Message msg = fileManager.appendFile(id, content);
+		ActionContext.getContext().put("msg", msg.toJSONMessage());
+		return "success";
+	}
 
 	public void setFileManager(FileManager fileManager)
 	{

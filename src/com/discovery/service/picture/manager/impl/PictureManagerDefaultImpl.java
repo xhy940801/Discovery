@@ -45,9 +45,9 @@ public class PictureManagerDefaultImpl implements PictureManager {
 	@Override
 	public Message addPicture(int fileId, int userId, float longitude,
 			float latitude, String remark) {
-		// TODO Auto-generated method stub
+		PictureInfo pictureInfo = null;
 		try{
-			PictureInfo pictureInfo = new PictureInfo();
+			pictureInfo = new PictureInfo();
 			pictureInfo.setFileId(fileId);
 			pictureInfo.setLongitude(longitude);
 			pictureInfo.setLatitude(latitude);

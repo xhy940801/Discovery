@@ -104,4 +104,36 @@ public class FileManagerDefaultImpl implements FileManager
 		this.fileDAO = fileDAO;
 	}
 
+	@Override
+	public Message appendFile(int id, String content)
+	{
+		File file;
+		try
+		{
+			file = fileDAO.getById(id);
+			if(file == null)
+				return new ErrorMessage(605011, null);
+			
+			byte[] newData =  base64Decoder.decodeBuffer(content);
+			byte[] totalData = new byte[newData.length + file.getContent().length];
+			System.arraycopy(file.getContent(), 0, totalData, 0, file.getContent().length);
+			System.arraycopy(newData, 0, totalData, file.getContent().length, newData.length);
+			fileDAO.save(file);
+		}
+		catch (HibernateException e)
+		{
+			e.printStackTrace();
+			return new ErrorMessage(405020, null);
+		}
+		catch (Exception e)
+		{
+			return new ErrorMessage(505020, null);
+		}
+		catch (Throwable e)
+		{
+			return new ErrorMessage(705020, null);
+		}
+		return new GeneralMessage(0, null);
+	}
+
 }
