@@ -118,7 +118,8 @@ public class FileManagerDefaultImpl implements FileManager
 			byte[] totalData = new byte[newData.length + file.getContent().length];
 			System.arraycopy(file.getContent(), 0, totalData, 0, file.getContent().length);
 			System.arraycopy(newData, 0, totalData, file.getContent().length, newData.length);
-			fileDAO.save(file);
+			file.setContent(totalData);
+			fileDAO.update(file);
 		}
 		catch (HibernateException e)
 		{

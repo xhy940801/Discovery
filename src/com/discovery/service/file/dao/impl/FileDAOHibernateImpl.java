@@ -37,4 +37,10 @@ public class FileDAOHibernateImpl implements FileDAO
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Override
+	public void update(File file)
+	{
+		sessionFactory.getCurrentSession().update(file);
+	}
+
 }

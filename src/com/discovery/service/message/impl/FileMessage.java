@@ -32,6 +32,11 @@ public class FileMessage implements Message
 		jsonObj.put("msg", jMapObj);
 		return jsonObj.toJSONString();
 	}
+	
+	public File getFile()
+	{
+		return file;
+	}
 
 	@Override
 	public int getMsgCode()

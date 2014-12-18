@@ -11,6 +11,12 @@ public interface FileDAO
 	public void save(File file);
 	
 	/**
+	 * 新增更改
+	 * @param file 文件
+	 */
+	public void update(File file);
+	
+	/**
 	 * 通过id获取文件
 	 * @param id 文件id
 	 * @return 文件对象
