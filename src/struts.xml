@@ -39,5 +39,8 @@
 		<action name="getPictureInfoList" class="pictureAction" method="getPictureInfoList">
 			<result name="success">/WEB-INF/JSP/success.jsp</result>
 		</action>
+		<action name="likePicture" class="pictureAction" method="likePicture">
+			<result name="success">/WEB-INF/JSP/success.jsp</result>
+		</action>
 	</package>
 </struts>

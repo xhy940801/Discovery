@@ -59,6 +59,14 @@ public class PictureAction {
 		return "success";
 	}
 	
+	public String likePicture() {
+		Map<?, ?> map = ActionContext.getContext().getParameters();
+		int pictureId = Integer.parseInt(((String[]) map.get("pictureId"))[0]);
+		Message msg = pictureManager.like(pictureId, 1);
+		ActionContext.getContext().put("msg", msg.toJSONMessage());
+		return "success";
+	}
+	
 	public PushManager getPushManager() {
 		return pushManager;
 	}
