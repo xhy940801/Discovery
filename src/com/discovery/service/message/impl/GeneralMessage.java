@@ -37,7 +37,7 @@ public class GeneralMessage implements Message
 	@Override
 	public String toJSONMessage()
 	{
-		return "{code:" + msgCode + ",msg:" + msg + "}";
+		return "{\"code\":" + msgCode + ",\"msg\":" + msg + "}";
 	}
 
 }
